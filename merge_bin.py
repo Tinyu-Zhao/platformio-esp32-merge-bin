@@ -59,8 +59,8 @@ def merge_bin_files(env):
     commands.append(outputFilename)
     commands.append('--flash-size')
     commands.append(flash_size)
-    commands.append('--flash-mode')
-    commands.append(flash_mode)
+    # commands.append('--flash-mode')
+    # commands.append(flash_mode)
 
     if verbose:
         print("extra images:")
