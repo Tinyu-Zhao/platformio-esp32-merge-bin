@@ -51,13 +51,23 @@ def merge_bin_files(env):
 
     outputFilename = join(output_dir, output_file)
 
+    version_tuple = tuple(map(int, esptool.__version__.split('.')[:2]))
+    if verbose:
+        print("esptool version:", esptool.__version__)
+
     commands = []
     commands.append('--chip')
     commands.append(chip_type)
-    commands.append('merge-bin')
+    if version_tuple >= (5, 0):
+        commands.append('merge-bin')
+    else:
+        commands.append('merge_bin')
     commands.append('-o')
     commands.append(outputFilename)
-    commands.append('--flash-size')
+    if version_tuple >= (5, 0):
+        commands.append('--flash-size')
+    else:
+        commands.append('--flash_size')
     commands.append(flash_size)
     # commands.append('--flash-mode')
     # commands.append(flash_mode)
